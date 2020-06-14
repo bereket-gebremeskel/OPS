@@ -1,0 +1,73 @@
+
+    /* background: black !important; */
+.searchbtn {
+    background: #dc3545!important;
+    border-radius: 0px;
+    padding: 7px 25px;
+    margin-left: -19px;
+    color: white;
+    border: 1px solid #dc3545;
+    margin-top: -1px;
+}
+
+.cartnum{
+    position: absolute;
+    top: -1px;
+    left: 21px;
+    /* background: #222; */
+    background:#dc3545;
+    line-height: 18px;
+    border-radius: 50%;
+    font-size: 17px;
+    padding: 4px;
+}
+ul li {
+    display: inline;
+    padding-right: 14px;
+}
+ul{
+    list-style: none;
+    padding-top: 11px;
+}   
+
+.zmdi-shopping-cart{
+    padding-top: 21px;
+}
+a{
+    border-bottom: 2px solid white;
+    color: white !IMPORTANT;
+    padding: 20px;
+}
+
+.profile{
+    padding-top: 10px;
+}
+h4 {
+    margin-left: 12px;
+    margin-top: 6px;
+    font-weight: 700;
+    text-shadow: 0 0 black;
+}
+
+.onblur {
+    position: fixed;
+    background: #21252982;
+    height: 100vh;
+    z-index: 1;
+    width: 198vw;
+    left: 0;
+    top: 58px;
+}
+.onsearch {
+    position: absolute;
+    background: white;
+    z-index: 2;
+    width: 429px;
+    color: black;
+    top: 46px;
+    left: 23px;
+    border-top: 1px solid beige;
+}
+.onsearch ul li {
+    margin-left: -28px;
+}

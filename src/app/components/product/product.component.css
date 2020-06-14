@@ -1,0 +1,16 @@
+.addToCartbtn {
+    background: #dc3545!important;
+    border-radius: 0px;
+    /* padding: 7px 25px; */
+    /* margin-left: -19px; */
+    color: white;
+    border: 1px solid #dc3545;
+}
+.productinfo.text-center {
+    border: 1px solid #dc354552;
+    border-radius: 8px;
+    width: 270px;
+    padding: 0px 0px 12px 0px;
+}
+
+  

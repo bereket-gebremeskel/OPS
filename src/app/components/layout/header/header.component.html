@@ -1,0 +1,65 @@
+<!-- 
+<div class="d-flex bd-highlight">
+  <div class="p-2 flex-fill bd-highlight">Shopin.g Island</div>
+  <div class="p-2 flex-fill bd-highlight">
+    <div class="d-flex">
+      <div class="p-2 flex-grow-1 bd-highlight">
+        <input type="text" class="form-control" placeholder="search" />
+      </div>
+      <div class="p-2">
+        <button type="button" class="btn btn-primary">
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="p-2 flex-fill bd-highlight">orderssssssssssssssssssssssssssssss</div>
+  <div class="p-2 bd-highlight">Profile</div>
+</div> -->
+<div class="row">
+  <div class="col-lg-2">
+    <h4>Shopping Island</h4>
+  </div>
+  <div class="col-lg-5">
+    <div class="d-flex">
+      <div class="p-2 flex-grow-1 bd-highlight">
+        <input type="text" (ngModelChange)="filterData($event)" class="form-control" [(ngModel)]="filterText" placeholder="search" />
+      </div>
+      <div class="p-2">
+        <button type="button" (click)="search()" class="btn btn-primary searchbtn">
+          Search
+        </button>
+      </div>
+    </div >
+    <!-- *ngIf="isSearch" -->
+    <div *ngIf="isSearch"class="onsearch">
+      <ul *ngFor="let d of filter">
+        <li (click)="search()" > {{d}}</li>
+      </ul>
+      
+    </div>
+    <div *ngIf="isSearch" class="onblur"></div>
+    <!-- <app-criteria dispalyDetail= true></app-criteria> -->
+  </div>
+   <div class="col-lg-2">
+    <ul>
+      
+      <li>Seller</li>
+      <li>Admin</li>
+    </ul>
+  </div>
+  <div class="col-lg-2">
+    <div class="row">
+      <div class="col-lg-6" style="margin-top: 11px;">
+       <a href="#" >Your Orders</a>
+      </div>
+      <div class="col-lg-6">
+        <i class="zmdi zmdi-shopping-cart"></i>
+        <span class="cartnum">0</span>&nbsp; Cart
+      </div>
+    </div>
+   
+  
+  </div>
+  <div class="col-lg-1 profile"><i class="zmdi zmdi-account"></i>&nbsp;Profile</div>
+</div>
