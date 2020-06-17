@@ -6,18 +6,32 @@ const routes: Routes = [
   { 
     path:'',
     component:ShellComponent,
-    children:[{
+    children:[
+      {
       path:'',
       redirectTo:'product',
       pathMatch: 'full'
-    },
+      },
     {
       path:'product',
       loadChildren:()=>
       import("./components/product/product.module").then(p => p.ProductModule)
+    },
+    {
+      path:'setting',
+      loadChildren:()=> import("./components/setting/setting.module").then(s => s.SettingModule)
+    },
+    {
+      path:'cart',
+      loadChildren:()=> import("./components/cart/cart.module").then(c => c.CartModule)
+    },
+    {
+      path:'orders',
+      loadChildren:()=> import("./components/ordered-product/ordered-product.module").then(o => o.OrderedProductModule)
     }
+
   ]
-   },
+  }
 ];
 
 @NgModule({

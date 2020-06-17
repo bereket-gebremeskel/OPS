@@ -1,0 +1,32 @@
+<app-custom-card>
+  <ng-container>
+    <div class="row"> 
+      <div class="col-lg-6">
+        <h4>List of Sub-Categories</h4>
+      </div>
+      <div class="col-md-4 text-right">
+        <button class="btn btn-primary" (click)="show()">
+          Add
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  <div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Category Name</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cat of subcategories ">
+          <th scope="row">1</th>
+          <td>{{cat.name}}</td>
+          <td><button type="button" class="btn btn-primary" (click)="update(cat)">edit</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-custom-card>

@@ -2,9 +2,13 @@
     /* background: black !important; */
 .searchbtn {
     background: #dc3545!important;
-    border-radius: 0px;
+    border-bottom-right-radius: 30px;
+    /* border-radius: 0px; */
+    border-top-right-radius: 30px;
     padding: 7px 25px;
-    margin-left: -19px;
+    /* margin-left: -19px; */
+    
+    margin-left: -38px;
     color: white;
     border: 1px solid #dc3545;
     margin-top: -1px;
@@ -34,9 +38,9 @@ ul{
     padding-top: 21px;
 }
 a{
-    border-bottom: 2px solid white;
+    /* border-bottom: 2px solid white; */
     color: white !IMPORTANT;
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 .profile{
@@ -70,4 +74,9 @@ h4 {
 }
 .onsearch ul li {
     margin-left: -28px;
+}
+
+ul:hover {
+    background: #84848408;
+    cursor: pointer;
 }

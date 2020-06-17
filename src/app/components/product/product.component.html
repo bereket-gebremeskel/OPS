@@ -1,46 +1,17 @@
-<div class="row">
-  <div class="col-lg-3">
+<div class="productheader">
+  <h4>Shopping Island is your first stop!</h4>
+</div>
+<div class="row" >
+  <div class="col-lg-2" *ngFor="let product of products">
     <div class="productinfo text-center">
-      <img
-        src="../../../assets//images/product7.jpg"
+      <div class="imgc" *ngIf="product.imageUrl">
+        <img
+        src="{{product.imageUrl}}"
         alt=""
-        style="width: 136px;"
-      />
-      <h2>$56</h2>
-      <p>Easy Polo Black Edition</p>
-      <a href="#" class="btn btn-primary add-to-cart addToCartbtn"
-        ><i class="fa fa-shopping-cart"></i>Add to cart</a
-      >
-    </div>
-  </div>
-  <div class="col-lg-3">
-    <div class="productinfo text-center">
-      <img
-        src="../../../assets//images/product7.jpg"
-        alt=""
-        style="width: 136px;"
-      />
-      <h2>$56</h2>
-      <p>Easy Polo Black Edition</p>
-      <a href="#" class="btn btn-primary add-to-cart addToCartbtn">
-        <i class="fa fa-shopping-cart"> </i>Add to cart
-      </a>
-    </div>
-  </div>
-  <div class="col-lg-3">
-    <div class="productinfo text-center">
-      <img
-        src="../../../assets//images/product7.jpg"
-        alt=""
-        style="width: 136px;"
-      />
-      <h2>$56</h2>
-      <p>Easy Polo Black Edition</p>
-      <a href="#" class="btn btn-primary add-to-cart addToCartbtn">
-        <i class="fa fa-shopping-cart"></i>Add to cart</a>
-        <a [routerLink]="['detail']" class="btn btn-primary add-to-cart addToCartbtn">
-          <i class="fa fa-shopping-cart">
-        </i>Detail</a>
-    </div>
+        />
+      </div>
+      <h5>$56</h5>
+      <p ><a (click)="navigateToDetail(product)" class="productname">{{product.name}}</a> </p>
+      <a href="#" class="btn btn-primary add-to-cart addToCartbtn btn-sm"><i class="zmdi zmdi-shopping-cart"></i>&nbsp;Add to cart</a>
   </div>
 </div>

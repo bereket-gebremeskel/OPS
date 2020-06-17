@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +12,38 @@ export class HeaderComponent implements OnInit {
   data:string[] = ["bek","hiwot","yeshi"];
   isSearch:boolean;
   filter:any[];
+  items:MenuItem[];
   constructor(private route:Router) { }
 
   ngOnInit() {
+    this.items = [
+      // {
+      //     label: 'File',
+      //     items: [
+      //       {
+      //             label: 'New', 
+      //             icon: 'pi pi-fw pi-plus',
+      //             items: [
+      //                 {label: 'Project'},
+      //                 {label: 'Other'},
+      //             ]
+      //         },
+      //         {label: 'Open'},
+      //         {label: 'Quit'}
+      //     ]
+      // },
+      {
+          label: 'Setting',
+          icon: 'pi pi-cog',
+          items: [
+              {label: 'category',routerLink:['/setting/category']},
+              {label: 'Sub-Category',routerLink:['/setting/sub-category']}
+          ]
+      },
+      {
+        label:'My Products',routerLink:['/product/list']
+      }
+  ];
   }
   filterData(value = null){
     if(value){
@@ -21,18 +51,17 @@ export class HeaderComponent implements OnInit {
      
         return x.includes(value)
        })
-       if(this.filter.length){
-        this.isSearch = true;
-      }else{
-        this.isSearch = false
-        console.log(value)
-      }
+       this.filter.length ? this.isSearch = true:this.isSearch=false;
+      //  if(this.filter.length){
+      //   this.isSearch = true;
+      // }else{
+      //   this.isSearch = false
+      //   console.log(value)
+      // }
       
     }else{
       this.isSearch = false
     }
-    
-    
    console.log(this.filter)
   }
   search(){

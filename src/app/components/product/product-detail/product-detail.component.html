@@ -1,3 +1,39 @@
-<p>
-  product-detail works!
-</p>
+<div class="row mainContainer">
+  <div class="col-lg-5">
+    <div class=" container imageContainer">
+      <img class="productImg" src="{{product?.product?.imageUrl}}" >
+    </div>
+    
+  </div>
+  <div class="col-lg-4">
+    <div class=" detailcontainer">
+      <h4>{{product?.product?.name}}</h4>
+      <hr>
+      <p><span class="pricename">Price: </span> <span class="priceValue">{{price | currency}}</span></p>
+    
+      <form class="form-inline">
+      <label for="">
+        Unit: &nbsp; </label>
+        <!-- [compareWith]="compareItemId" -->
+        <select  class="form-control unitSelector"  name="unitid" [(ngModel)]="item" >
+          <option [ngValue]="null" selected></option>
+          <option *ngFor="let itemss of items" [ngValue]="itemss" >{{itemss.unit.name}}</option>
+        </select>
+        <span>&nbsp; Only {{stockQuantity}} left in stock</span>
+      </form>
+      <br>
+      <!-- <br> -->
+      <p>Detail: {{product?.product?.description}}</p>
+  
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="container addandby">
+      <button type="button" class="btn btn-primary addToCartbtn" (click)="addToCart()"><i class="zmdi zmdi-shopping-cart"></i>&nbsp;Add to Cart</button>
+      <br>
+      <br>
+      <button type="button" class="btn btn-primary addToCartbtn" (click)="placeOrder()"><i class="zmdi zmdi-case-play"></i>&nbsp;Buy Now</button>
+    </div>
+  </div>
+</div>

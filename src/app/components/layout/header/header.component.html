@@ -18,12 +18,13 @@
 </div> -->
 <div class="row">
   <div class="col-lg-2">
-    <h4>Shopping Island</h4>
+    <h4 >
+      <a [routerLink]="'/'">Shopping Island</a> </h4>
   </div>
   <div class="col-lg-5">
     <div class="d-flex">
       <div class="p-2 flex-grow-1 bd-highlight">
-        <input type="text" (ngModelChange)="filterData($event)" class="form-control" [(ngModel)]="filterText" placeholder="search" />
+        <input type="text"  style="border: 1px solid #ced4da;border-radius: 30px !important;" (ngModelChange)="filterData($event)" class="form-control" [(ngModel)]="filterText" placeholder="search" />
       </div>
       <div class="p-2">
         <button type="button" (click)="search()" class="btn btn-primary searchbtn">
@@ -42,24 +43,21 @@
     <!-- <app-criteria dispalyDetail= true></app-criteria> -->
   </div>
    <div class="col-lg-2">
-    <ul>
-      
-      <li>Seller</li>
-      <li>Admin</li>
-    </ul>
+        <p-menubar [model]="items" >
+      </p-menubar>
   </div>
   <div class="col-lg-2">
     <div class="row">
       <div class="col-lg-6" style="margin-top: 11px;">
-       <a href="#" >Your Orders</a>
+       <a href="#"[routerLink]="['/orders']" >Orders</a>
       </div>
       <div class="col-lg-6">
-        <i class="zmdi zmdi-shopping-cart"></i>
-        <span class="cartnum">0</span>&nbsp; Cart
+        <a [routerLink]="['/cart']">
+          <i class="zmdi zmdi-shopping-cart"></i>
+          <span class="cartnum">0</span>&nbsp; Cart</a>
+        
       </div>
     </div>
-   
-  
   </div>
   <div class="col-lg-1 profile"><i class="zmdi zmdi-account"></i>&nbsp;Profile</div>
 </div>

@@ -1,0 +1,32 @@
+<app-custom-card>
+  <ng-container>
+    <div class="row"> 
+      <div class="col-lg-6">
+        <h4>List of Categories</h4>
+      </div>
+      <div class="col-md-4 text-right">
+        <button class="btn btn-primary" (click)="newProduct()">
+          Add
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  <div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Category Name</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories ">
+          <th scope="row">1</th>
+          <td>{{category.name}}</td>
+          <td><button type="button" class="btn btn-primary" (click)="categorySelected(category)">edit</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-custom-card>

@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+.ui-menubar {
+    padding: 0;
+    background-color: #212529!important;
+    border: 0px !important;
+    
+}
+.ui-menuitem-text{
+    color: white !important;
+}
+.ui-menuitem-icon{
+    color: white !important;
+}
+.ui-menuitem-link{
+    background-color: #212529!important;
+}
+.ui-menubar .ui-menuitem-link:hover {
+    /* padding: 0; */
+    background-color: #212529!important;
+    border: 0px !important;
+    border: 0px !important;
+    
+}
+.ui-menubar .ui-submenu-list{
+    border: 0px !important;
+    top: 56px!important;
+}
+.ui-menubar .ui-submenu-list :hover {
+    /* padding: 0; */
+    background-color: #dc3545!important;
+    border: 0px !important;
+    border: 0px !important;
+    
+}
+.ui-menubar .ui-menuitem-link:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: inset 0 0 0 0 #8dcdff !important;
+}
+body{
+    /* background: #f4f4f7 !important; */
+    background-color: #f4f4f4 !important;
+}
+.ui-menubar.ui-widget.ui-widget-content.ui-corner-all {
+    width: 114%;
+}
+.addToCartbtn {
+    border-radius: 50px !important;
+}
