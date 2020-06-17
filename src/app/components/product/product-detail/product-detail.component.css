@@ -23,8 +23,8 @@ span.priceValue {
 }
 
 button.btn.btn-primary.addToCartbtn {
-    min-width: 210px;
-    max-width: 210px;
+    min-width: 250px;
+    max-width: 251px;
 }
 .detailcontainer {
     padding-top: 20px;

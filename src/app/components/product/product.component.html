@@ -12,6 +12,7 @@
       </div>
       <h5>$56</h5>
       <p ><a (click)="navigateToDetail(product)" class="productname">{{product.name}}</a> </p>
-      <a href="#" class="btn btn-primary add-to-cart addToCartbtn btn-sm"><i class="zmdi zmdi-shopping-cart"></i>&nbsp;Add to cart</a>
+      <p ><a (click)="navigateToDetail(product)" class="productname">{{product.description | truncate : 42}} ...</a> </p>
+      <a (click)="navigateToDetail(product)"class="btn btn-primary add-to-cart addToCartbtn btn-sm"><i class="zmdi zmdi-collection-text"></i>&nbsp;See More</a>
   </div>
 </div>

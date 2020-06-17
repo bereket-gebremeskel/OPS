@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,7 +17,9 @@ export class ProductDetailComponent implements OnInit {
   stockQuantity:number;
   _item:any={};
   itemId:string;
-  constructor(private route:ActivatedRoute,private productService:ProductService) { }
+  user:any;
+  isInCart:boolean = false;
+  constructor(private route:ActivatedRoute,private productService:ProductService,private userService:UserService,private router:Router) { }
 
   ngOnInit() {
     this.route.data.subscribe(res => {
@@ -31,6 +34,16 @@ export class ProductDetailComponent implements OnInit {
        console.log("single product" ,this.product)
        this._item = this.product
       console.log("iteemmmsss" ,this.items)
+      this.user =this.userService.currentUser()
+      let singleProdId = this.product.product._id;
+      this.user.shoppingCart.forEach(item => {
+        let prodId :string= item.product._id
+        if(prodId== singleProdId){
+        
+          console.log("hehhhhhhhhh",item.product._id ,this.product.product._id)
+          this.isInCart = true
+        }
+      })
     })
   }
 
@@ -46,12 +59,17 @@ export class ProductDetailComponent implements OnInit {
  
   }
 
-  addToCart(){
-
+  addToCart(itemId:string){
+    console.log(itemId)
+     this.userService.addItemToCart({"userId":this.user._id,"itemId":itemId}).subscribe(res => this.userService.changeCartNumber(true));
   }
+  
 
   placeOrder(){
     
+  }
+  navigateToCart(id){
+    this.router.navigate(['/cart'])
   }
   // compareItemId(itemone,itemtwo){
   //   console.log( itemone ,itemtwo)

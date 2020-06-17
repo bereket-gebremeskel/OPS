@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {MenuItem} from 'primeng/api';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,9 +14,25 @@ export class HeaderComponent implements OnInit {
   isSearch:boolean;
   filter:any[];
   items:MenuItem[];
-  constructor(private route:Router) { }
+  cartAmmount:number;
+
+  constructor(private route:Router,private userService:UserService) { }
 
   ngOnInit() {
+    this.userService.getUserById("5ee8618b862e1385b086239d").subscribe(user => {
+      this.cartAmmount = user?.shoppingCart.length;
+      window.localStorage.setItem("userData",JSON.stringify(user));
+      console.log("useeeeeeeeeeeeeeee",this.userService.currentUser())
+    })
+    this.userService.cartNumberChanges$.subscribe(res => {
+      if(res == true){
+        ++this.cartAmmount ;
+      }else if(res == false){
+        if(this.cartAmmount >0){
+          --this.cartAmmount
+        }
+      }
+    })
     this.items = [
       // {
       //     label: 'File',

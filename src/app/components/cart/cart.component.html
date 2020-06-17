@@ -20,7 +20,7 @@
     <div class="col-lg-2 price">
       <h4>{{item.price | currency}}</h4>
       <button class="btn btn-primary add-to-cart addToCartbtn order btn-sm"><i class="zmdi zmdi-case-play"></i>&nbsp;Place Order</button>
-      <button class="btn btn-primary add-to-cart addToCartbtn delete btn-sm"><i class="zmdi zmdi-delete"></i>&nbsp;remove</button>
+      <button class="btn btn-primary add-to-cart addToCartbtn delete btn-sm" (click)="removeFromCart(item._id)"><i class="zmdi zmdi-delete"></i>&nbsp;remove</button>
     </div>
     <hr>
   </div>

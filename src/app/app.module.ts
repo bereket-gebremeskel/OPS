@@ -18,8 +18,11 @@ import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 import {DynamicDialogModule, DialogService, DynamicDialogRef, DynamicDialogConfig} from 'primeng/dynamicdialog';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { SignUpComponent } from './components/authentication/sign-up/sign-up.component';
+import { LoginComponent } from './components/authentication/login/login.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ShellComponent],
+  declarations: [AppComponent, HeaderComponent, ShellComponent,AuthenticationComponent,LoginComponent,SignUpComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

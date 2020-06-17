@@ -1,8 +1,18 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ShellComponent } from './components/layout/home/shell/shell.component';
 import { NgModule } from '@angular/core';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { SignUpComponent } from './components/authentication/sign-up/sign-up.component';
 
 const routes: Routes = [
+  {
+    path:'login',
+    component:LoginComponent
+  },
+  {
+    path:'signup',
+    component:SignUpComponent
+  },
   { 
     path:'',
     component:ShellComponent,
