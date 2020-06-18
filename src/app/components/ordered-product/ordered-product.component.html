@@ -2,26 +2,56 @@
   <div>
     <h4>Previously Orderd Items</h4>
   </div>
-
 </div>
 <div class="main-container">
   <div class="row cartrows" *ngFor="let item of items">
     <div class="col-lg-3">
       <div class="imagecontainer">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/91aAsRoS8eL._AC_UL1500_.jpg" alt="" class="productImage">
+        <img
+          src="https://images-na.ssl-images-amazon.com/images/I/91aAsRoS8eL._AC_UL1500_.jpg"
+          alt=""
+          class="productImage"
+        />
       </div>
-      
     </div>
-    <div class="col-lg-6 detail">
-      <h5><a (click)="navigateToDetail(item.product)">{{item?.product?.name}}</a></h5>
-      <p>{{item?.product?.description}}</p>
+    <div class="col-lg-4 detail">
+      <h5>
+        <a (click)="navigateToDetail(item?.item?.product)">{{
+          item?.item?.product?.name
+        }}</a>
+      </h5>
+      <span><span> Orderd on</span></span>
+      <p>{{ item?.item?.product?.description }}</p>
       <p></p>
     </div>
     <div class="col-lg-2 price">
-      <h4>{{item.price | currency}}</h4>
-      <button class="btn btn-primary add-to-cart addToCartbtn order btn-sm"><i class="zmdi zmdi-case-play"></i>&nbsp;Order Again</button>
-      <button class="btn btn-primary add-to-cart addToCartbtn delete btn-sm"><i class="zmdi zmdi-delete"></i>&nbsp;cancel</button>
+      <h4>{{ item?.item?.price | currency }}</h4>
+      <!-- <button class="btn btn-primary add-to-cart addToCartbtn order btn-sm" (click)="placeOrderComponent(item)"><i class="zmdi zmdi-case-play"></i>&nbsp;Order Again</button>
+      <button class="btn btn-primary add-to-cart addToCartbtn delete btn-sm"><i class="zmdi zmdi-delete"></i>&nbsp;cancel</button> -->
+
+      <p>status:</p>
     </div>
-    <hr>
+    <div class="col-lg-2">
+      <button
+        *ngIf="user.role == 'BUYER'"
+        class="btn btn-primary add-to-cart addToCartbtn order btn-sm"
+        (click)="placeOrderComponent(item)"
+      >
+        <i class="zmdi zmdi-case-play"></i>&nbsp;Order Again
+      </button>
+      <button class="btn btn-primary add-to-cart addToCartbtn delete btn-sm">
+        <i class="zmdi zmdi-delete"></i>&nbsp;cancel
+      </button>
+      <div>
+        <label>Change Status</label>
+        <select class="form-control" name="status" [(ngModel)]="status">
+          <option [ngValue]="null" selected></option>
+          <option *ngFor="let s of statuses" [value]="s.value">{{
+            s.name
+          }}</option>
+        </select>
+      </div>
+    </div>
+    <hr />
   </div>
 </div>

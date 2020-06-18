@@ -40,6 +40,12 @@ getUserById(id):Observable<any>{
   )))
 }
 
+createOrder(user):Observable<any>{
+  return this.http.put(this.api + 'admin/' +'users/' +'placeSingleOrder',user).pipe((map((res:IItemResponse) => 
+     res.result
+  )))
+}
+
 currentUser(){
   return JSON.parse(window.localStorage.getItem("userData"));
 }

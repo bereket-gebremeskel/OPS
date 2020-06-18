@@ -4,8 +4,8 @@ img.productImage {
 }
 .main-container {
     background: white;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow: inherit;
 }
 .row.cartrows {
     padding: 11px 0px 24px 20px;
@@ -14,19 +14,19 @@ img.productImage {
 }
 .price h4 {
     color: #dc3545;
-    float: right;
+    /* float: right; */
 }
 .order {
-    position: absolute;
+    /* position: absolute;
     bottom: 0;
-    left: 0;
+    left: 0; */
     border: navajowhite;
     background: #dc3545;
 }
 .delete {
-    position: absolute;
+    /* position: absolute;
     bottom: 0;
-    right: 0;
+    right: 0; */
     background: red;
     border: navajowhite;
 }

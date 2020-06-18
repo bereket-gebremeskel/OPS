@@ -18,6 +18,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.router.queryParams.subscribe((res) => {
+      console.log("in product list",res)
       if(res.q){
         console.log("fsda",res)
       }else{

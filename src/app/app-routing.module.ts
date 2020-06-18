@@ -38,7 +38,13 @@ const routes: Routes = [
     {
       path:'orders',
       loadChildren:()=> import("./components/ordered-product/ordered-product.module").then(o => o.OrderedProductModule)
+    },
+    {
+      path:'profile',
+      loadChildren:()=> import("./components/user-profile/user-profile.module").then(u => u.UserProfileModule)
     }
+
+    
 
   ]
   }

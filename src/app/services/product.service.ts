@@ -14,7 +14,7 @@ export class ProductService {
 
   private api = environment.API;
   private selectedProductSource = new BehaviorSubject<Product | null>(null);
-selectedCategoryChanges$ = this.selectedProductSource.asObservable();
+  selectedCategoryChanges$ = this.selectedProductSource.asObservable();
 
 constructor(private http:HttpClient) { }
 

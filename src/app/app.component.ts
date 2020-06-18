@@ -10,6 +10,6 @@ export class AppComponent implements  OnInit  {
   title = 'OPS';
 
   ngOnInit(): void {
-  console.log("whats going onnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+  
   }
 }

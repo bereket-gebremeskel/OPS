@@ -88,7 +88,8 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
-    RouterModule 
+    RouterModule ,
+    
   ],
   declarations: [ProductComponent,ProductDetailComponent,AddProductComponent,ProductListComponent,AddItemComponent],
 

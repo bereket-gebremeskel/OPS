@@ -8,6 +8,7 @@ import { SubCategory } from 'src/app/model/subCategory';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/model/Product';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-product',
@@ -21,8 +22,9 @@ export class AddProductComponent implements OnInit {
   subCategories: any[];
   categoryId:any;
   product:Product;
+  user:any;
   constructor(private fb: FormBuilder, private categoryService: ProductCategoryService,
-    private subCategoryService:SubCategoryService,private productService:ProductService,private route:ActivatedRoute) { }
+    private subCategoryService:SubCategoryService,private productService:ProductService,private route:ActivatedRoute,private userServce:UserService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -30,12 +32,14 @@ export class AddProductComponent implements OnInit {
       if(data.product){
         this.product = data.product;
         console.log("'console.log('data',this.product.subCategory.category._id)'",this.product.subCategory.category)
-        this.getSubCategory(this.product.subCategory.category._id)
+        this.getSubCategory(this.product.subCategory.category._id);
+        console.log('this.product.subCategory.category._id',this.product.subCategory.category._id)
         this.pupulateData();
       }else{
+      this.user =  this.userServce.currentUser;
         this.productForm = this.fb.group({
           name:[''],
-          userId:['5ee8029163abd363779e7a09'],
+          userId:[this.user?._id],
           description:[''],
           imageUrl:[''],
           subCategoryId:[''],
@@ -65,7 +69,7 @@ export class AddProductComponent implements OnInit {
   }
 
   save(){
-    if(this.product._id){
+    if(this.product?._id){
       this.productService.updateProduct(this.productForm.value).subscribe(res => {
         this.productForm.reset();
         this.previousState();

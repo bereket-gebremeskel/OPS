@@ -1,0 +1,45 @@
+<!-- [formGroup]="orderForm" -->
+<form (ngSubmit)="placeOrder()" >
+  <div class="form-group row">
+     
+      <div class="col-lg-4">
+        <h5>Will be Shipped To :</h5>
+        <p *ngIf="showPrevious">{{fullAddress}} </p>
+        <p *ngIf="!showPrevious"> {{fullAddress}}ssss </p>
+        <!-- <p>Account Number : {{user.billingInformation.accountNumber}}</p> -->
+      </div>
+      <div class="col-lg-3">
+        <h5>Billing Infromation</h5>
+        <p>Name : {{user.billingInformation.nameOntheCard}}</p>
+        <p>Account Number : {{user.billingInformation.accountNumber}}</p>
+      </div>
+      <div class="col-lg-4">
+        <!-- formControlName="addressId" -->
+        <label>Change shipping Address</label>
+        <select
+          style="color: #000000 !important;"
+          class="form-control"
+          name="subcategory"
+          [(ngModel)]="address"
+          >
+          <option [ngValue]="null" selected></option>
+          <option *ngFor="let add of addresses" [ngValue]="add">{{
+            add.addressString
+          }}</option>
+        </select>
+      </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12 col-md-offset-2">
+      <span>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          style="width: 80px; margin-right: 10px;">
+          Order
+        </button>
+      </span>
+      <span> </span>
+    </div>
+  </div>
+</form>

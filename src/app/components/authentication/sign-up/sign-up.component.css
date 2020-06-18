@@ -1,0 +1,46 @@
+.loginwrapper {
+    width: 800px;
+    margin: 0px auto;
+    padding-top: 25px;
+}
+
+.box {
+    width: 866px;
+    margin: 0px auto;
+    background-color: #ffffff3d;
+    padding: 12px;
+    color: white;
+}
+
+.logintxt{
+    font-size: 25px;
+    text-align: center;
+    font-weight: 400;
+}
+.main{
+  
+    background: #3c3939b8;
+    height: 100vh;
+}
+.wrapper{
+    background-image: url('https://cdn.pixabay.com/photo/2017/03/13/17/26/ecommerce-2140603_960_720.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 0px;
+}
+.logibtn{
+    width: 100px;
+    margin: 0px auto;
+}
+.logibtn button{
+    width: 360px;
+    margin-left: 173px;
+    background: #2f383166;
+    border: 1px solid #dee2e6;
+}
+.form-control {
+    background: #ffffff52 !important;
+    color: #fff7ff !important;
+    border: 0px;
+}

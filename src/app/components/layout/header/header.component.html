@@ -55,9 +55,11 @@
         <a [routerLink]="['/cart']">
           <i class="zmdi zmdi-shopping-cart"></i>
           <span class="cartnum">{{cartAmmount}}</span>&nbsp; Cart</a>
-        
       </div>
     </div>
   </div>
-  <div class="col-lg-1 profile"><i class="zmdi zmdi-account"></i>&nbsp;Profile</div>
+  <div class="col-lg-1 profile">
+    <a [routerLink]="['/profile']">  <i class="zmdi zmdi-account"></i>&nbsp;Profile</a>
+  
+  </div>
 </div>
