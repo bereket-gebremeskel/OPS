@@ -1,21 +1,20 @@
-<!-- 
-<div class="d-flex bd-highlight">
-  <div class="p-2 flex-fill bd-highlight">Shopin.g Island</div>
-  <div class="p-2 flex-fill bd-highlight">
-    <div class="d-flex">
-      <div class="p-2 flex-grow-1 bd-highlight">
-        <input type="text" class="form-control" placeholder="search" />
-      </div>
-      <div class="p-2">
-        <button type="button" class="btn btn-primary">
-          Search
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="p-2 flex-fill bd-highlight">orderssssssssssssssssssssssssssssss</div>
-  <div class="p-2 bd-highlight">Profile</div>
-</div> -->
+<div style="  background: #2f343afa;height: 26px;
+color: black;
+margin-top: -4px;display: flex;
+    justify-content: flex-end;border-bottom: 1px solid #848484;" >
+
+<div>
+  <ul>
+    <li>
+      <a [routerLink]="['/profile']" *ngIf="isLoggedIn">  <i class="zmdi zmdi-account"></i>&nbsp;<span style="font-size: 13px;
+        color: #e5e9ec;">Logged in as</span>  {{user?.firstName}} </a>&nbsp; |&nbsp;
+              <a  *ngIf="isLoggedIn" (click)="logout()">  Log out</a>
+              <a [routerLink]="['/login']" *ngIf="!isLoggedIn">  Login&nbsp;<i class="zmdi zmdi-sign-in"></i></a>
+              <a [routerLink]="['/signup']" *ngIf="!isLoggedIn">  SignUp&nbsp;<i class="zmdi zmdi-account-add"></i></a>
+    </li>
+  </ul>
+</div>
+</div>
 <div class="row">
   <div class="col-lg-2">
     <h4 >
@@ -40,26 +39,61 @@
       
     </div>
     <div *ngIf="isSearch" class="onblur"></div>
-    <!-- <app-criteria dispalyDetail= true></app-criteria> -->
   </div>
-   <div class="col-lg-2">
-        <p-menubar [model]="items" >
-      </p-menubar>
+   <!-- <div class="col-lg-2">
+  
+      
   </div>
   <div class="col-lg-2">
     <div class="row">
-      <div class="col-lg-6" style="margin-top: 11px;">
-       <a href="#"[routerLink]="['/orders']" >Orders</a>
+      <div class="col-lg-8" style="margin-top: 11px;">
+        
+      
+       
       </div>
-      <div class="col-lg-6">
-        <a [routerLink]="['/cart']">
-          <i class="zmdi zmdi-shopping-cart"></i>
-          <span class="cartnum">{{cartAmmount}}</span>&nbsp; Cart</a>
+      <div class="col-lg-4">
+       
       </div>
     </div>
-  </div>
-  <div class="col-lg-1 profile">
-    <a [routerLink]="['/profile']">  <i class="zmdi zmdi-account"></i>&nbsp;Profile</a>
-  
+  </div> -->
+  <div class="col-lg-5 profile">
+    <div class="row">
+      <div class="col-lg-3">
+        <p-menubar [model]="items" *ngIf="user?.role == 'ADMIN' ">
+        </p-menubar>
+      </div>
+      <div class="col-lg-9">
+        <ul style="width: 456px;margin-left: -45px;">
+          <!-- <li>
+          
+          </li> -->
+          <li><a [routerLink]="['/product/list']" *ngIf="user?.role == 'SELLER' ||user?.role == 'ADMIN' ">My Products</a></li>
+          <li>
+            <a href="#"[routerLink]="['/orders']" *ngIf="user?.role == 'BUYER' ||user?.role == 'ADMIN' " >MyOrders</a>
+          </li>
+          <li>
+            <a href="#"[routerLink]="['/orders/o']" *ngIf="user?.role == 'SELLER' ||user?.role == 'ADMIN' ">Customer Orders</a>
+          </li>
+          <li>
+            <a [routerLink]="['/cart']">
+              <span class="zmdi zmdi-shopping-cart"></span>
+              <span class="cartnum">{{cartAmmount}}</span> Cart</a>
+          </li>
+          <li>
+            <!-- <a [routerLink]="['/login']" *ngIf="!isLoggedIn">  Login&nbsp;<i class="zmdi zmdi-sign-in"></i></a>
+            <a [routerLink]="['/signup']" *ngIf="!isLoggedIn">  SignUp&nbsp;<i class="zmdi zmdi-account-add"></i></a> -->
+          </li>
+          <li>
+            <!-- <a [routerLink]="['/profile']" *ngIf="isLoggedIn">  <i class="zmdi zmdi-account"></i>&nbsp;Profile</a> -->
+            <!-- <a [routerLink]="['/profile']" *ngIf="isLoggedIn">  <i class="zmdi zmdi-account"></i>&nbsp;log out</a> -->
+          
+          </li>
+        </ul>
+      </div>
+    </div>
+ 
+    
+    
+    
   </div>
 </div>

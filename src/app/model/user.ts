@@ -14,4 +14,5 @@ export interface User {
     expiryDate?:string,
     password?:string,
     role?:string,
+    addressId?:string
 }

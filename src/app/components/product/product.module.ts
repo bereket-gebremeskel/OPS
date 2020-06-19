@@ -12,6 +12,9 @@ import { ItemService } from 'src/app/services/item.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Observable, concat } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 @Injectable()
 export class productResolver implements  Resolve<any>{
   constructor() {}
@@ -27,6 +30,7 @@ export class itemResolver implements  Resolve<any>{
     resolve(route:ActivatedRouteSnapshot){
       console.log('route',route)
      const id = route.params['id'];
+     console.log('iddd',id)
     //  let singleproduct =  this.productService.getProductById(id);
      let items = this.itemService.getItemByProductId(id);
       // return singleproduct.pipe(switchMap(product => {
@@ -89,11 +93,11 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     RouterModule ,
-    
+    ToastModule
   ],
   declarations: [ProductComponent,ProductDetailComponent,AddProductComponent,ProductListComponent,AddItemComponent],
 
-  providers:[productResolver,SubCategoryService,itemResolver,productByResolver],
+  providers:[MessageService,productResolver,SubCategoryService,itemResolver,productByResolver],
   entryComponents:[
     AddItemComponent
   ]

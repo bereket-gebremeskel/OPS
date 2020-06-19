@@ -1,26 +1,27 @@
-
-<div class="productheader" hidden id="pdfTable" #pdfTable>
-  <div >
+<div class="productheader">
+  <div>
     <h4>Previously Orderd Items</h4>
   </div>
 </div>
-<div class="main-container" >
+<div class="main-container">
   <div class="row cartrows" *ngFor="let item of items">
+    
     <div class="col-lg-3">
       <div class="imagecontainer">
-        <img crossorigin="anonymous"
-        src="{{item?.item?.product?.imageUrl}}"
+        <img
+          src="{{item?.item?.product?.imageUrl}}"
           alt=""
           class="productImage"
         />
       </div>
     </div>
-    <div class="col-lg-4 detail"  >
+    <div class="col-lg-4 detail">
       <h5>
         <a (click)="navigateToDetail(item?.item?.product)">{{
           item?.item?.product?.name
         }}</a>
       </h5>
+      {{item?.item?.orderStatus}}
       <span style="font-size: 12px;
       border-bottom: 1px solid #a8000061;"><span> Orderd on: </span>{{item.orderDate |date:'short'}}</span>
       <p>{{ item?.item?.product?.description }}</p>
@@ -30,29 +31,24 @@
       <h4>{{ item?.item?.price | currency }}</h4>
       <!-- <button class="btn btn-primary add-to-cart addToCartbtn order btn-sm" (click)="placeOrderComponent(item)"><i class="zmdi zmdi-case-play"></i>&nbsp;Order Again</button>
       <button class="btn btn-primary add-to-cart addToCartbtn delete btn-sm"><i class="zmdi zmdi-delete"></i>&nbsp;cancel</button> -->
-
       <p style="text-transform: capitalize;">status: <span style="
-        color: #dc3545;">{{item.orderStatus}}</span></p>
+        color: #dc3545;">{{item?.orderStatus}}</span></p>
     </div>
     <div class="col-lg-2">
-      <!--  *ngIf="user.role == 'BUYER'" -->
-      <button
-       
-        class="btn btn-primary add-to-cart addToCartbtn order btn-sm"
-        (click)="placeOrderComponent(item)"
-      >
-        <i class="zmdi zmdi-case-play"></i>&nbsp;Order Again
-      </button>
-      <button class="btn btn-primary add-to-cart addToCartbtn delete btn-sm" (click)="changeStatus(item?._id)" [disabled]="item.orderStatus == 'CANCELLED'">
+<!-- 
+      <button class="btn btn-primary add-to-cart addToCartbtn delete btn-sm">
         <i class="zmdi zmdi-delete"></i>&nbsp;cancel
-      </button>
-      <button (click)="addComment(item)" style="margin-top: 28px;background: #007bff;" class="btn btn-primary sty  addToCartbtn delete btn-sm">
-        <i class="zmdi zmdi-comment-text"></i>&nbsp;Comment/Review
-      </button>
+      </button> -->
+      <div>
+        <label>Change Status</label>
+        <select class="form-control" name="status" [(ngModel)]="status" >
+          <option [ngValue]="null" selected></option>
+          <option *ngFor="let s of statuses" [value]="s.value">{{ s.name}}</option>
+        </select>
+        <button style="margin-top: 10px;" type="button" class="form-control" class="btn-btn-primary btn-sm" *ngIf="status != null" (click)="changeStatus(item?._id)">change</button>
+      </div>
     </div>
     <hr />
   </div>
 </div>
-<button (click)="downloadAsPDF()">export</button>
-<!-- <button (click)="addSingle()">toast</button> -->
 <p-toast position="top-center"></p-toast>

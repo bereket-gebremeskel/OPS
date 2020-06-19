@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/model/user';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AddressService } from 'src/app/services/address.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,7 @@ export class SignUpComponent implements OnInit {
   user:User;
   userForm:FormGroup;
   addresses: any[];
-  constructor(private fb:FormBuilder,private userService:UserService,private addressService:AddressService) { }
+  constructor(private fb:FormBuilder,private userService:UserService,private addressService:AddressService,private router:Router) { }
 
   ngOnInit() {
     this.addressService.getAddresses().subscribe(res => {
@@ -31,10 +32,10 @@ export class SignUpComponent implements OnInit {
       accountNumber:[0],
       expiryDate:[''],
 
-      state:['fsasfdda'],
-      city:['asfdffffffffff'],
-      street:['sfdffffffffa'],
-      zipCode:['sssss'],
+      state:['Iowa'],
+      city:['Fairfield'],
+      street:['1000 N 4th St.'],
+      zipCode:['52557'],
 
       password:[''],
       ccv:[''],
@@ -54,7 +55,12 @@ export class SignUpComponent implements OnInit {
   }
 
   save(){
-    this.userService.createUser(this.userForm.value).subscribe(res =>res)
+    this.userService.createUser(this.userForm.value).subscribe(res =>{
+      this.router.navigate(['/login'])
+      if(res){
+      
+      }
+    })
   }
   addressSelect(address){
     console.log("adres",address)

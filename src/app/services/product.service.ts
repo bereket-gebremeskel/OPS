@@ -23,11 +23,15 @@ changeSelectedPoduct(selectedProduct:Product | null):void{
 }
 
 getAllProducts():Observable<Product[]>{
-  return this.http.get(this.api  + "admin/" + 'products').pipe((map((res:IItemListResponse) => res.result)));
+  return this.http.get(this.api  + "admin/" + 'productsWithItem').pipe((map((res:IItemListResponse) => res.result)));
  }
 
  getProductById(id):Observable<Product[]>{
   return this.http.get(this.api  + "admin/" + 'products/' + id).pipe((map((res:IItemListResponse) => res.result)));
+ }
+
+ getProductBysellerId(id):Observable<Product[]>{
+  return this.http.get(this.api  + "admin/" + 'products/' + 'seller/' + id).pipe((map((res:IItemListResponse) => res.result)));
  }
 
 createProduct(product:Product):Observable<Product>{
@@ -41,5 +45,15 @@ updateProduct(product:Product):Observable<Product>{
      res.result
   )))
 }
+
+deleteProduct(id:any):Observable<Product>{
+  return this.http.delete(this.api + 'admin/' +'products/' + id).pipe((map((res:IItemResponse) => 
+     res.result
+  )))
+}
+
+getProductReivews(id):Observable<any[]>{
+  return this.http.post(this.api  + "admin/" + 'products/' + 'productReview' , {"productId":id}).pipe((map((res:IItemListResponse) => res.result)));
+ }
 
 }

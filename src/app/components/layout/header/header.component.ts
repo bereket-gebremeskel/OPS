@@ -14,16 +14,25 @@ export class HeaderComponent implements OnInit {
   isSearch:boolean;
   filter:any[];
   items:MenuItem[];
-  cartAmmount:number;
+  cartAmmount:number=0;
+  isLoggedIn: boolean;
+  user: any;
 
   constructor(private route:Router,private userService:UserService) { }
 
   ngOnInit() {
-    this.userService.getUserById("5eea9a5870871a198c6bd6d0").subscribe(user => {
+    this.user = this.userService.currentUser();
+    console.log('22222',this.user)
+    this.userService.getUserById(this.userService.currentUser()?._id).subscribe(user => {
       this.cartAmmount = user?.shoppingCart.length;
-      window.localStorage.setItem("userData",JSON.stringify(user));
-      console.log("useeeeeeeeeeeeeeee",this.userService.currentUser())
-    })
+      this.isLoggedIn = true;
+      // window.localStorage.setItem("userData",JSON.stringify(user));
+      // console.log("useeeeeeeeeeeeeeee",this.userService.currentUser())
+    });
+    if(this.userService.currentUser()?._id){
+      this.user = this.userService.currentUser();
+      
+    }
     this.userService.cartNumberChanges$.subscribe(res => {
       if(res == true){
         ++this.cartAmmount ;
@@ -53,13 +62,14 @@ export class HeaderComponent implements OnInit {
           label: 'Setting',
           icon: 'pi pi-cog',
           items: [
-              {label: 'category',routerLink:['/setting/category']},
+            {label: 'Users',routerLink:['/users']},
+              {label: 'Category',routerLink:['/setting/category']},
               {label: 'Sub-Category',routerLink:['/setting/sub-category']}
           ]
       },
-      {
-        label:'My Products',routerLink:['/product/list']
-      }
+      // {
+      //   label:'My Products',routerLink:['/product/list']
+      // }
   ];
   }
   filterData(value = null){
@@ -84,5 +94,11 @@ export class HeaderComponent implements OnInit {
   search(){
     this.isSearch = false;
     this.route.navigate(['product'],{queryParams:{'q':"sdfa"}})
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('userData');
+    this.route.navigate(['/login'])
   }
 }

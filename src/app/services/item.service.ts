@@ -31,4 +31,11 @@ getAllItems():Observable<any>{
      res.result
   )))
 }
+
+changeOrderStatus(order){
+  return this.http.put(this.api + 'admin/' +'users/' +'updateOrderStatus',order).pipe((map((res:IItemResponse) => 
+     res.result
+  )))
+}
+
 }

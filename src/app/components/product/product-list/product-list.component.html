@@ -16,14 +16,15 @@
         alt=""
         />
       </div>
-      <h5>$56</h5>
+      <h5 >{{product.maxPrice}}</h5>
+      
       <p ><a (click)="navigateToDetail(product)" class="productname">{{product.name}}</a> </p>
       
       <button class="btn btn-primary add-to-cart addToCartbtn btn-sm" (click)="addItem(product)"><i class="zmdi zmdi-plus-square"></i>&nbsp;Add Item | {{product.itemCount}}</button>
      
       <div>
         <a (click)="navigateToedit(product)" class=""><i class="zmdi zmdi-edit"></i>&nbsp;edit</a>&nbsp;
-        <a  class="" *ngIf="product.itemCount !=0"><i class="zmdi zmdi-delete" ></i>&nbsp;delete</a>
+        <a  (click)="delete(product._id)" *ngIf="product.itemCount ==0"><i class="zmdi zmdi-delete" ></i>&nbsp;delete</a>
       </div>
       
   </div>

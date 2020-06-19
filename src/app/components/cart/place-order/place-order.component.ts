@@ -28,7 +28,8 @@ export class PlaceOrderComponent implements OnInit {
     this.user = this.userService.currentUser();
     this.addressService.getAddresses().subscribe(res =>this.addresses = res );
     this.orderForm.addressId = this.user.addresses[0]._id;
-    this.fullAddress = this.user.addresses[0];
+    console.log('this.user.addresses[0]',this.user.addresses[0])
+    this.fullAddress = this.user.addresses[0].addressString;
   }
 
   placeOrder(){
@@ -37,11 +38,12 @@ export class PlaceOrderComponent implements OnInit {
     }else{
       this.orderForm.itemId = this.item?._id;
     }
-    
+    this.orderForm.shoppingCartId = this.item._id
     this.orderForm.userId = this.user?._id;
     this.userService.createOrder(this.orderForm).subscribe(res => {
       this.userService.changeCartNumber(false);
-      this.ref.close("hi");
+      console.log('bekiiiiiiiiiiiiiiiiiiiiii',res)
+      this.ref.close(res);
     })
   }
 

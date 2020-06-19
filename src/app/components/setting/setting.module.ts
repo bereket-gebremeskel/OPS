@@ -45,7 +45,7 @@ const routes: Routes = [
     SubCategoryListComponent],
   providers: [ProductCategoryService,SubCategoryService],
   entryComponents:[
-    SubCategoryEditComponent
+    // SubCategoryEditComponent
   ]
 })
 export class SettingModule { }

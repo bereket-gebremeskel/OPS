@@ -4,6 +4,7 @@ import {DynamicDialogConfig} from 'primeng/dynamicdialog';
 import { SubCategory } from 'src/app/model/subCategory';
 import { SubCategoryService } from 'src/app/services/sub-category.service';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-sub-category-edit',
@@ -13,27 +14,31 @@ import { ProductCategoryService } from 'src/app/services/product-category.servic
 export class SubCategoryEditComponent implements OnInit {
 
   pageTitle:string="Add Sub-Category";
-  subCategory:any = {};
+  subCategory:FormGroup ;
   categories: any[];
   
-  constructor( public ref: DynamicDialogRef, public config: DynamicDialogConfig,private subCategoryService:SubCategoryService, private categoryService: ProductCategoryService) { }
+  constructor( private fb:FormBuilder,public ref: DynamicDialogRef, public config: DynamicDialogConfig,private subCategoryService:SubCategoryService, private categoryService: ProductCategoryService) { }
 
   ngOnInit() {
     this.subCategory = this.config.data;
-    console.log(this.config)
+    console.log("config",this.config)
+    this.subCategory = this.fb.group({
+      name:[''],
+      categoryId:['']
+    })
     this.categoryService.getAllCategories().subscribe(res => this.categories =  res);
   }
 
   save(){
-    if(this.subCategory._id){
-      let s :any={};
-      s._id = this.subCategory._id;
-      s.name = this.subCategory.name;
-      s.categoryId = this.subCategory.category._id
-      this.subCategoryService.updateSubCategory(s).subscribe(res => this.ref.close("hiiiii"))
-    }else{
-      this.subCategoryService.createSubCategory(this.subCategory).subscribe(res => this.ref.close("hiiiii"))
-    }
+    // if(this.subCategory._id){
+    //   let s :any={};
+    //   s._id = this.subCategory._id;
+    //   s.name = this.subCategory.name;
+    //   s.categoryId = this.subCategory.category._id
+    //   this.subCategoryService.updateSubCategory(s).subscribe(res => this.ref.close("hiiiii"))
+    // }else{
+      this.subCategoryService.createSubCategory(this.subCategory.value).subscribe(res => this.ref.close("hiiiii"))
+    // }
    
    
   } 

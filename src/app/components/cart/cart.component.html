@@ -1,6 +1,6 @@
 <div class="productheader">
   <div>
-    <h4>Items in the Cart</h4>
+    <h4>Items in the Cart , <span *ngIf="!items.length" style="color: red;"> there is no item in the</span></h4>
   </div>
 
 </div>
@@ -25,3 +25,4 @@
     <hr>
   </div>
 </div>
+<p-toast position="top-center"></p-toast>

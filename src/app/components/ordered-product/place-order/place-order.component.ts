@@ -26,15 +26,21 @@ export class PlaceOrderagainComponent implements OnInit {
     this.user = this.userService.currentUser();
     this.addressService.getAddresses().subscribe(res =>this.addresses = res );
     this.orderForm.addressId = this.user.addresses[0]._id;
-    this.fullAddress = this.user.addresses[0];
+    
+    this.fullAddress = this.user.addresses[0].addressString;
   }
 
   placeOrder(){
     this.orderForm.itemId = this.item.item._id;
     this.orderForm.userId = this.user._id;
+    this.orderForm.shoppingCartId = this.item._id
     this.userService.createOrder(this.orderForm).subscribe(res => {
       this.userService.changeCartNumber(false);
-      this.ref.close("hiiiii");
+      console.log("/////",res)
+
+        
+        this.ref.close(res);
+    
     })
   }
 

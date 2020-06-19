@@ -33,10 +33,11 @@ export class AddProductComponent implements OnInit {
         this.product = data.product;
         console.log("'console.log('data',this.product.subCategory.category._id)'",this.product.subCategory.category)
         this.getSubCategory(this.product.subCategory.category._id);
-        console.log('this.product.subCategory.category._id',this.product.subCategory.category._id)
+
         this.pupulateData();
       }else{
-      this.user =  this.userServce.currentUser;
+      this.user =  this.userServce.currentUser();
+      console.log('this.user',     this.user)
         this.productForm = this.fb.group({
           name:[''],
           userId:[this.user?._id],

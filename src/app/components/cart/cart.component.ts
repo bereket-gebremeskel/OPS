@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,7 @@ export class CartComponent implements OnInit {
 
   items: any[];
   user: any;
-  constructor(private itemService: ItemService, private productService: ProductService,
+  constructor(private messageService: MessageService,private itemService: ItemService, private productService: ProductService,
     private route: Router, private userService: UserService, public dialogService: DialogService, private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
@@ -36,7 +37,8 @@ export class CartComponent implements OnInit {
 
   removeFromCart(id) {
     this.shoppingCartService.removeCart({'shoppingCartId':id,'userId':this.user._id}).subscribe(res => {
-      res
+      console.log("sjdfklajskdfjlkasjlkdfjalksjdflkjalskdfjaklsjlfkja")
+      this.getCarts()
     })
   }
 
@@ -48,10 +50,17 @@ export class CartComponent implements OnInit {
     });
 
     ref.onClose.subscribe((c) => {
-      this.route.navigate(['/orders'])
+      // this.route.navigate(['/orders'])
+  
       if (c) {
-
+            this.getCarts();
+        this.userService.getOrderInformationById(c._id).subscribe(res => {
+          this.orderConfirmation(res.orderInfromation)
+        })
       }
     });
+  }
+  orderConfirmation(text) {
+    this.messageService.add({severity:'success', summary:'Confirmation', detail:text});
   }
 }

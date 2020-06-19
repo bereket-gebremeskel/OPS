@@ -9,15 +9,27 @@ import {
 } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
+import { AuthService } from '../services/auth.service';
 
 
 @Injectable()
 export class httpInterceptor implements HttpInterceptor {
 
-  constructor(private messageService: MessageService){}
+  constructor(private messageService: MessageService,private authservice:AuthService){}
   intercept(req: HttpRequest<any>,next: HttpHandler): Observable<HttpEvent<any>> {
-    this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
-    console.log(req)
-    return next.handle(req).pipe(tap(res => console.log("res",res)));
+
+    // this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
+  
+
+    var access_token = this.authservice.getAccessToken() ? this.authservice.getAccessToken() : '';
+    console.log("access_token",access_token);
+    const authReq = req.clone(
+      {
+          headers: req.headers.set('x-auth-token' , access_token)
+      }
+  );
+  console.log("authReq",access_token)
+    return next.handle(authReq).pipe(tap(res => console.log("res",res)));
+
   }
 }

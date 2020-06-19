@@ -21,6 +21,8 @@ import {DynamicDialogModule, DialogService, DynamicDialogRef, DynamicDialogConfi
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { SignUpComponent } from './components/authentication/sign-up/sign-up.component';
 import { LoginComponent } from './components/authentication/login/login.component';
+import { AuthGuardGuard } from './components/auth/authGuard.guard';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ShellComponent,AuthenticationComponent,LoginComponent,SignUpComponent],
   imports: [
@@ -37,7 +39,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
   providers: [
     MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true },
-    ,DialogService,DynamicDialogRef,DynamicDialogConfig
+    ,DialogService,DynamicDialogRef,DynamicDialogConfig,AuthGuardGuard
   ],
 
   bootstrap: [AppComponent],

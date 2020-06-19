@@ -5,11 +5,33 @@ import { UserService } from 'src/app/services/user.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { PlaceOrderComponent } from '../../cart/place-order/place-order.component';
 import {DialogService} from 'primeng/dynamicdialog';
-
+import {MessageService} from 'primeng/api';
+import { identifierModuleUrl } from '@angular/compiler';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  styleUrls: ['./product-detail.component.css'],
+  styles:[
+    `
+        :host ::ng-deep button {
+            margin-right: .25em;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message {
+            background: #FC466B;
+            background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+            background: linear-gradient(to right, #3F5EFB, #FC466B);
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message div {
+            color: #ffffff;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
+            color: #ffffff;
+        }
+    `
+  ]
 })
 export class ProductDetailComponent implements OnInit {
 
@@ -23,9 +45,13 @@ export class ProductDetailComponent implements OnInit {
   user:any;
   isInCart:boolean = false;
   carts: any[];
-  constructor(public dialogService: DialogService,private route:ActivatedRoute,private productService:ProductService,private userService:UserService,private router:Router,private shoppingCartService:ShoppingCartService) { }
+  userId :string;
+  reviews: any={};
+  reivewId: any;
+  constructor(private messageService: MessageService, public dialogService: DialogService,private route:ActivatedRoute,private productService:ProductService,private userService:UserService,private router:Router,private shoppingCartService:ShoppingCartService) { }
 
   ngOnInit() {
+    this.addSingle();
     this.route.data.subscribe(res => {
       // this.productService.selectedCategoryChanges$.subscribe((res:[]) => {
       //   console.log('behavioural',res);
@@ -40,21 +66,16 @@ export class ProductDetailComponent implements OnInit {
        this._item = this.product
      
       this.user =this.userService.currentUser();
-      this.getCarts();
-      
-      let singleProdId = this.product?.product?._id;
-     
-      // this.user.shoppingCart.forEach(item => {
-      //   let prodId :string= item.product?._id;
-      //   console.log("hehhhhhhhhh",item.product._id ,this.product.product._id)
-      //   if(prodId== singleProdId){
-        
-          
-      //     this.isInCart = true
-      //   }
-      // })
+      this.userId = this.user?._id;
+      if(this.user){
+        this.getCarts();
+      }
+      this.getReviews(this.product?.product?._id);
     })
+  
   }
+
+
 
   getCarts(){
     let singleProdId = this.product?.product?._id;
@@ -88,7 +109,8 @@ export class ProductDetailComponent implements OnInit {
     console.log(itemId)
      this.userService.addItemToCart({"userId":this.user?._id,"itemId":itemId}).subscribe(res =>{
       this.userService.changeCartNumber(true);
-      this.isInCart = true
+      this.isInCart = true;
+     this. addSingle();
      });
   }
   
@@ -101,7 +123,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   placeOrderComponent(item){
-    console.log("iiiiiiiiiiiiiiiiiii",item)
     const ref = this.dialogService.open(PlaceOrderComponent, {
       data: item,
         header: 'form',
@@ -115,4 +136,23 @@ export class ProductDetailComponent implements OnInit {
       }
   });
   }
+
+  getReviews(id:string){
+    console.log('rerrrrrrrrrrrrrrrr',id)
+    this.productService.getProductReivews(id).subscribe(res => {
+      console.log('rerrrrrrrrrrrrrrrr',res)
+      this.reviews = res;
+      this.reivewId = this.reviews._id
+    })
+  }
+  approveReview(id:string,approve:string){
+    this.userService.approveReview({"textId":id,"reviewStatus":approve,"reviewId":this.reivewId}).subscribe(res => {
+      this.getReviews(this.product?.product?._id);
+      this.addSingle();
+    })
+  }
+
+  addSingle() {
+    this.messageService.add({severity:'success', summary:'Confirmation', detail:'Operation successful'});
+}
 }

@@ -15,6 +15,10 @@ export class SubCategoryListComponent implements OnInit {
   constructor(public dialogService: DialogService,private subCategoryService:SubCategoryService) { }
 
   ngOnInit() {
+   this. load();
+  }
+
+  load(){
     this.subCategoryService.getAllSubCategories().subscribe(res => this.subcategories = res)
   }
   newProduct(){}
@@ -31,6 +35,7 @@ export class SubCategoryListComponent implements OnInit {
     });
 
     ref.onClose.subscribe((c) => {
+      this.load();
       if (c) {
 
       }

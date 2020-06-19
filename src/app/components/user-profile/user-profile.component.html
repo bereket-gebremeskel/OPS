@@ -1,3 +1,110 @@
-<p>
-  user-profile works!
-</p>
+<form (ngSubmit)="save()" [formGroup]="userForm" *ngIf="user._id">
+  <div class="form-group row">
+    <div class="col-sm-4">
+      <label>First Name</label>
+      <input 
+        type="text"
+        class="form-control"
+        name="firstNamea"
+        placeholder="First Name"
+        formControlName="firstName"
+      />
+    </div>
+    <div class="col-sm-4">
+      <label>Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="lastName"
+        placeholder="Last Name"
+        formControlName="lastName"
+      />
+    </div>
+    <div class="col-sm-4">
+      <label>phoneNumber</label>
+      <input
+        type="text"
+        class="form-control"
+        name="phoneNumber"
+        placeholder="Phone Number"
+        formControlName="phoneNumber"
+      />
+    </div>
+  
+  </div>
+  <div class="form-group row">
+   
+  </div>
+  <div class="form-group row">
+    <div class="col-lg-4">
+      <label>Address</label>
+      <select style="color: #000000 !important;" class="form-control" name="subcategory" formControlName="addressId">
+        <option [ngValue]="null" selected></option>
+        <option *ngFor="let add of addresses" [value]="add._id" [selected]="user?.addresses[0]._id == add._id" >{{add.addressString}}</option>
+      </select>
+    </div>
+    <div class="col-sm-4">
+      <label for="inputPassword3">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        placeholder="Email"
+        formControlName="email"
+      />
+    </div>
+    <div class="col-sm-4">
+      <label for="inputPassword3">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+    </div>
+ 
+  </div>
+  <fieldset>
+    <legend>Account Infromation:</legend>
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <label>Name Onthe Card</label>
+        <input
+          type="text"
+          class="form-control"
+          name="nameOntheCard"
+          placeholder="Name Onthe Card"
+          formControlName="nameOntheCard"
+        />
+      </div>
+      <div class="col-sm-4">
+        <label>Expiry Date</label>
+        <input
+          type="text"
+          class="form-control"
+          name="expiryDate"
+          placeholder="Expiry Date"
+          formControlName="expiryDate"
+        />
+      </div>
+      <div class="col-sm-2">
+        <label>CCV</label>
+        <input
+          type="text"
+          class="form-control"
+          name="ccv"
+          placeholder="CCV"
+          formControlName="ccv"
+        />
+      </div>
+  
+    </div>
+  </fieldset>
+
+  <div class="form-group row">
+    <div class="col-sm-10 logibtn">
+      <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+  </div>
+</form>

@@ -1,9 +1,9 @@
+<!-- <p-toast position="top-left"></p-toast> -->
 <div class="row mainContainer">
   <div class="col-lg-5">
     <div class=" container imageContainer">
       <img class="productImg" src="{{product?.product?.imageUrl}}" >
     </div>
-    
   </div>
   <div class="col-lg-4">
     <div class=" detailcontainer">
@@ -24,17 +24,63 @@
       <br>
       <!-- <br> -->
       <p>Detail: {{product?.product?.description}}</p>
-  
     </div>
   </div>
-
   <div class="col-lg-3">
     <div class="container addandby">
-      <button type="button" class="btn btn-primary addToCartbtn" *ngIf="!isInCart" (click)="addToCart(item._id)"><i class="zmdi zmdi-shopping-cart"></i>&nbsp;Add to Cart</button>
-      <button type="button" class="btn btn-primary addToCartbtn" *ngIf="isInCart" (click)="navigateToCart(item._id)"><i class="zmdi zmdi-shopping-basket"></i>&nbsp;In cart Proceed Check out</button>
+      <div>
+        <button type="button" class="btn btn-primary addToCartbtn" *ngIf="!isInCart" (click)="addToCart(item._id)" [disabled]="!userId"><i class="zmdi zmdi-shopping-cart"></i>&nbsp;
+          <span *ngIf="userId">Add to Cart</span>
+          <span *ngIf="!userId">Login to add to cart</span>
+          
+        </button>
+        <button type="button" class="btn btn-primary addToCartbtn" *ngIf="isInCart" (click)="navigateToCart(item._id)" ><i class="zmdi zmdi-shopping-basket"></i>&nbsp;
+          In cart Proceed Check out</button>
+      </div>
+     
       <br>
       <br>
-      <button type="button" class="btn btn-primary addToCartbtn" (click)="placeOrderComponent(item)"><i class="zmdi zmdi-case-play"></i>&nbsp;Buy Now</button>
+      <button type="button" class="btn btn-primary addToCartbtn" (click)="placeOrderComponent(item)" [disabled]="!userId"><i class="zmdi zmdi-case-play"></i>&nbsp;
+        <span *ngIf="userId">Buy Now</span>
+          <span *ngIf="!userId">Login to Buy</span>
+        </button>
     </div>
   </div>
+  <div class="row container">
+    <div class="col-lg-12" ><h5 style="border-bottom: 1px solid #2125294d">Reviews</h5></div>
+
+      <div class="col-lg-12" >
+       <div class="row" *ngFor="let review of reviews.review">
+         <div class="col-lg-10">
+          <p *ngIf="review.reviewStatus == 'APPROVED'">{{review.reviewText}}</p>
+          
+          <p *ngIf="user?.role == 'ADMIN' && review.reviewStatus != 'APPROVED'">{{review.reviewText}}</p>
+         </div>
+         <div class="col-lg-2" style="    display: flex;">
+          <button type="button" class="btn btn-primary" *ngIf="user?.role == 'ADMIN' && review.reviewStatus != 'APPROVED'" (click)="approveReview(review._id,'APPROVED')">Approve</button>
+          <button type="button" class="btn btn-primary"   *ngIf="user?.role == 'ADMIN' && review.reviewStatus == 'APPROVED'"(click)="approveReview(review._id,'DISAPPROVED')">Reject</button>
+        </div>
+       </div>
+       
+      </div>
+  
+    
+  </div>
 </div>
+<p-toast position="top-center"></p-toast>
+<!-- <div class="row container">
+  <div class="col-lg-12" ><h5 style="border-bottom: 1px solid black;">Reviews</h5></div>
+
+  <div class="col-lg-10" *ngIf="reviews.length">
+    <div *ngFor="let review of reviews"></div>
+    <p *ngIf="review.reviewStatus == 'APPROVED'">{{This product is so cool}}</p>
+    <p *ngIf="user?.role == 'ADMIN' && review.reviewStatus != 'APPROVED'">This product is so cool</p>
+  </div>
+
+  <div class="col-lg-2" *ngIf="reviews.length">
+    <div *ngFor="let review of reviews"></div>
+    <p *ngIf="review.reviewStatus == 'APPROVED'">{{This product is so cool}}</p>
+    <p ></p>
+    <p></p>
+  </div>
+</div> -->
