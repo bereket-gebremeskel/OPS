@@ -17,14 +17,9 @@ export class ProductComponent implements OnInit {
   constructor(private router:ActivatedRoute,private productService:ProductService,private route:Router) { }
 
   ngOnInit() {
-    this.router.queryParams.subscribe((res) => {
-      console.log("in product list",res)
-      if(res.q){
-        console.log("fsda",res)
-      }else{
+  
         this.productService.getAllProducts().subscribe(res => this.products = res)
-      }
-    })
+     
   }
 
 
