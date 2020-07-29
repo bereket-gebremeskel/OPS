@@ -5,5 +5,5 @@ COPY package*.json /app/
 RUN npm install
 
 COPY . /app/
-CMD ["npm","start"]
+CMD ["ng","start"]
 EXPOSE 3000
