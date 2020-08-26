@@ -20,7 +20,6 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     this.addressService.getAddresses().subscribe(res => {
-      console.log("adsfasdfasdf",res)
       this.addresses = res
     })
     this.userForm = this.fb.group({
@@ -63,7 +62,6 @@ export class SignUpComponent implements OnInit {
     })
   }
   addressSelect(address){
-    console.log("adres",address)
     this.userForm.patchValue({
       addressId:address._id
     });

@@ -44,7 +44,6 @@ export class CategoryEditComponent implements OnInit {
   }
 
   save(): void {
-    console.log("in save", this.category)
     if (this.categoryForm.valid) {
       const p = {...this.category,...this.categoryForm.value}
       if (p._id) {

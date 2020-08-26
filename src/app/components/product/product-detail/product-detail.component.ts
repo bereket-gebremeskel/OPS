@@ -53,16 +53,10 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     this.addSingle();
     this.route.data.subscribe(res => {
-      // this.productService.selectedCategoryChanges$.subscribe((res:[]) => {
-      //   console.log('behavioural',res);
-      
-      // })
-
       this.items = res.items;
        this.product = this.items[0];
        this.price = this.product?.price;
        this.stockQuantity = this.product?.stockQuantity
-       console.log("single product" ,this.product)
        this._item = this.product
      
       this.user =this.userService.currentUser();
@@ -89,7 +83,6 @@ export class ProductDetailComponent implements OnInit {
           this.isInCart = true
         }
       })
-      console.log("iteemmmsss" ,this.carts)
     })
   }
 
@@ -106,7 +99,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(itemId:string){
-    console.log(itemId)
      this.userService.addItemToCart({"userId":this.user?._id,"itemId":itemId}).subscribe(res =>{
       this.userService.changeCartNumber(true);
       this.isInCart = true;
@@ -138,9 +130,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getReviews(id:string){
-    console.log('rerrrrrrrrrrrrrrrr',id)
     this.productService.getProductReivews(id).subscribe(res => {
-      console.log('rerrrrrrrrrrrrrrrr',res)
       this.reviews = res;
       this.reivewId = this.reviews._id
     })

@@ -22,14 +22,12 @@ export class httpInterceptor implements HttpInterceptor {
   
 
     var access_token = this.authservice.getAccessToken() ? this.authservice.getAccessToken() : '';
-    console.log("access_token",access_token);
     const authReq = req.clone(
       {
           headers: req.headers.set('x-auth-token' , access_token)
       }
   );
-  console.log("authReq",access_token)
-    return next.handle(authReq).pipe(tap(res => console.log("res",res)));
+    return next.handle(authReq).pipe(tap(res => res));
 
   }
 }

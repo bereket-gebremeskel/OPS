@@ -22,12 +22,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.currentUser();
-    console.log('22222',this.user)
     this.userService.getUserById(this.userService.currentUser()?._id).subscribe(user => {
       this.cartAmmount = user?.shoppingCart.length;
       this.isLoggedIn = true;
-      // window.localStorage.setItem("userData",JSON.stringify(user));
-      // console.log("useeeeeeeeeeeeeeee",this.userService.currentUser())
     });
     if(this.userService.currentUser()?._id){
       this.user = this.userService.currentUser();
@@ -79,17 +76,10 @@ export class HeaderComponent implements OnInit {
         return x.includes(value)
        })
        this.filter.length ? this.isSearch = true:this.isSearch=false;
-      //  if(this.filter.length){
-      //   this.isSearch = true;
-      // }else{
-      //   this.isSearch = false
-      //   console.log(value)
-      // }
       
     }else{
       this.isSearch = false
     }
-   console.log(this.filter)
   }
   search(){
     this.isSearch = false;

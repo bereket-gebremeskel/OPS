@@ -17,7 +17,6 @@ export class UserProfileComponent implements OnInit {
     let u = this.userService.currentUser();
     this.userService.getUserById(u._id).subscribe(res => {
      this.user = res;
-     console.log("this.userssssss",this.user.firstName)
      
      this.userForm = this.fb.group({
        _id:[this.user?._id],
@@ -44,7 +43,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.addressService.getAddresses().subscribe(res => {
-      console.log("adsfasdfasdf",res)
       this.addresses = res
     });
   

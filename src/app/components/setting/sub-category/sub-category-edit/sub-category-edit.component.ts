@@ -21,7 +21,6 @@ export class SubCategoryEditComponent implements OnInit {
 
   ngOnInit() {
     this.subCategory = this.config.data;
-    console.log("config",this.config)
     this.subCategory = this.fb.group({
       name:[''],
       categoryId:['']

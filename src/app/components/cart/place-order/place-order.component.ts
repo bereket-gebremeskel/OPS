@@ -28,7 +28,6 @@ export class PlaceOrderComponent implements OnInit {
     this.user = this.userService.currentUser();
     this.addressService.getAddresses().subscribe(res =>this.addresses = res );
     this.orderForm.addressId = this.user.addresses[0]._id;
-    console.log('this.user.addresses[0]',this.user.addresses[0])
     this.fullAddress = this.user.addresses[0].addressString;
   }
 
@@ -42,7 +41,6 @@ export class PlaceOrderComponent implements OnInit {
     this.orderForm.userId = this.user?._id;
     this.userService.createOrder(this.orderForm).subscribe(res => {
       this.userService.changeCartNumber(false);
-      console.log('bekiiiiiiiiiiiiiiiiiiiiii',res)
       this.ref.close(res);
     })
   }

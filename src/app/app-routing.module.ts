@@ -21,7 +21,7 @@ const routes: Routes = [
     children:[
       {
       path:'',
-      redirectTo:'product',
+      redirectTo:'login',
       pathMatch: 'full'
       },
     {
@@ -57,8 +57,6 @@ const routes: Routes = [
       canActivate:[AuthGuardGuard],
       loadChildren:()=> import("./components/user/user.module").then(u => u.UserModule)
     }
-
-    
 
   ]
   }

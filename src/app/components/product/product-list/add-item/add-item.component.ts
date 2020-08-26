@@ -18,8 +18,7 @@ export class AddItemComponent implements OnInit {
 
   ngOnInit() {
     this.unitService.getAllUnits().subscribe(res => {
-      this.units  = res,
-      console.log("this.u",this.units )
+      this.units  = res
     });
     this.itemForm = this.fb.group({
       price:[''],
@@ -31,7 +30,6 @@ export class AddItemComponent implements OnInit {
 
   save(){
     this.itemService.createItem(this.itemForm.value).subscribe(res => {
-      this.ref.close("hiiiii")
     })
     
   }

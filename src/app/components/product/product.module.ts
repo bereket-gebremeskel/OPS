@@ -19,8 +19,6 @@ import { MessageService } from 'primeng/api';
 export class productResolver implements  Resolve<any>{
   constructor() {}
     resolve(route:ActivatedRouteSnapshot){
-      console.log('route',route)
-    // const id = route.params['id'];
       return "queryiedddddddddd"
     }
   }
@@ -28,9 +26,7 @@ export class productResolver implements  Resolve<any>{
 export class itemResolver implements  Resolve<any>{
   constructor(private itemService:ItemService,private productService:ProductService) {}
     resolve(route:ActivatedRouteSnapshot){
-      console.log('route',route)
      const id = route.params['id'];
-     console.log('iddd',id)
     //  let singleproduct =  this.productService.getProductById(id);
      let items = this.itemService.getItemByProductId(id);
       // return singleproduct.pipe(switchMap(product => {
@@ -45,7 +41,6 @@ export class itemResolver implements  Resolve<any>{
   export class productByResolver implements  Resolve<any>{
     constructor(private itemService:ItemService,private productService:ProductService) {}
       resolve(route:ActivatedRouteSnapshot){
-        console.log('route',route)
        const id = route.params['id'];
         let singleproduct =  this.productService.getProductById(id);
         return singleproduct;

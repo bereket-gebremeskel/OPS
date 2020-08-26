@@ -13,7 +13,6 @@ export class CriteriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("dispalyDetail" + this.dispalyDetail)
   }
 
 }

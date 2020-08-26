@@ -16,10 +16,8 @@ export class CommentComponent implements OnInit {
   constructor(public ref: DynamicDialogRef,public config: DynamicDialogConfig,private userService:UserService) { }
 
   ngOnInit() {
-    console.log("heyyyy",this.config?.data?.item?.product?._id)
     this.productId = this.config?.data?.item?.product?._id;
    this.userId= this.userService.currentUser()?._id;
-   console.log('this.userService.currentUser()?._id',this.userService.currentUser()?._id)
   }
 
   addComment(){

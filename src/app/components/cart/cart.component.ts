@@ -21,7 +21,6 @@ export class CartComponent implements OnInit {
     private route: Router, private userService: UserService, public dialogService: DialogService, private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
-    console.log("in cart")
     this.user = this.userService.currentUser();
     this.getCarts();
   }
@@ -37,7 +36,6 @@ export class CartComponent implements OnInit {
 
   removeFromCart(id) {
     this.shoppingCartService.removeCart({'shoppingCartId':id,'userId':this.user._id}).subscribe(res => {
-      console.log("sjdfklajskdfjlkasjlkdfjalksjdflkjalskdfjaklsjlfkja")
       this.getCarts()
     })
   }

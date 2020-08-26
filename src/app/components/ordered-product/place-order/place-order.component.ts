@@ -36,9 +36,6 @@ export class PlaceOrderagainComponent implements OnInit {
     this.orderForm.shoppingCartId = this.item._id
     this.userService.createOrder(this.orderForm).subscribe(res => {
       this.userService.changeCartNumber(false);
-      console.log("/////",res)
-
-        
         this.ref.close(res);
     
     })

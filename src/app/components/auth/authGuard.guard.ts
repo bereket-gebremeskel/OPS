@@ -12,11 +12,9 @@ export class AuthGuardGuard implements CanActivate {
   canActivate():boolean {
    
     if(this.authService.isloggedIn()){
-      console.log(" in guarddd 1")
       return true;
     }else{
       this.router.navigate(['/login'])
-      console.log(" in guarddd 2")
         return false;
       
     }

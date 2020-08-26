@@ -22,9 +22,11 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { SignUpComponent } from './components/authentication/sign-up/sign-up.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { AuthGuardGuard } from './components/auth/authGuard.guard';
+import { BekComponent } from './bek/bek.component';
+import { BekDirective } from './bek.directive';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ShellComponent,AuthenticationComponent,LoginComponent,SignUpComponent],
+  declarations: [AppComponent, HeaderComponent, ShellComponent,AuthenticationComponent,LoginComponent,SignUpComponent, BekComponent, BekDirective],
   imports: [
     BrowserModule,
     AppRoutingModule,

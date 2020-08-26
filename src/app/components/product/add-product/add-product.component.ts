@@ -28,16 +28,13 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      console.log('data',data)
       if(data.product){
         this.product = data.product;
-        console.log("'console.log('data',this.product.subCategory.category._id)'",this.product.subCategory.category)
-        this.getSubCategory(this.product.subCategory.category._id);
+      this.getSubCategory(this.product.subCategory.category._id);
 
         this.pupulateData();
       }else{
       this.user =  this.userServce.currentUser();
-      console.log('this.user',     this.user)
         this.productForm = this.fb.group({
           name:[''],
           userId:[this.user?._id],
@@ -61,10 +58,8 @@ export class AddProductComponent implements OnInit {
 
   getSubCategory(id:string){
     let x = "bek"
-    console.log("iddd",typeof(id))
 
     this.subCategoryService.getSubCategoryByCategoryId(id).subscribe(subcategories =>  {
-      console.log("subcate",subcategories)
       this.subCategories = subcategories;
     });
   }

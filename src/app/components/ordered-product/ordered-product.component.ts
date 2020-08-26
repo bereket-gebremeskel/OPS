@@ -54,7 +54,6 @@ export class OrderedProductComponent implements OnInit {
     this.userService.getOrdersByuserId(this.user?._id).subscribe(items => {
 
       this.items = items;
-      console.log("this items i",items)
     })
   }
   navigateToDetail(product) {
@@ -62,7 +61,6 @@ export class OrderedProductComponent implements OnInit {
     this.route.navigate(['/product', product._id, 'items'])
   }
   placeOrderComponent(item) {
-    console.log("iiiiiiiiiiiiiiiiiii")
     const ref = this.dialogService.open(PlaceOrderagainComponent, {
       data: item,
       header: 'form',
@@ -70,10 +68,8 @@ export class OrderedProductComponent implements OnInit {
     });
 
     ref.onClose.subscribe((c) => {
-      console.log('ccccccccc',c)
       if (c) {
         this.userService.getOrderInformationById(item._id).subscribe(res => {
-          console.log('xxxxxxxxxxxxxx',res)
           this.orderConfirmation(res[0]?.orderInformation)
         })
       }
@@ -82,7 +78,6 @@ export class OrderedProductComponent implements OnInit {
 
 
   addComment(item) {
-    console.log("beki")
     const ref = this.dialogService.open(CommentComponent, {
       data: item,
       header: 'Comment',

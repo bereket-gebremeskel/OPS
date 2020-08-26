@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   login(){
     this.authService.login(this.user).subscribe(res => {
       if(res){
-        console.log('inlogin',res)
         window.localStorage.setItem("token",res);
         this.authService.getCurrentUserApi().subscribe(u => {
           if(u){

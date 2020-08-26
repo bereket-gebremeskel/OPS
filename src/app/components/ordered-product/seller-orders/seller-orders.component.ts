@@ -47,9 +47,7 @@ export class SellerOrdersComponent implements OnInit {
   }
   getOrders() {
     this.userService.getOrdersByseller(this.user?._id).subscribe(items => {
-      console.log("thisiiiiiiiiii",items)
       this.items = items;
-      console.log("this items",this.items)
     })
   }
   navigateToDetail(product) {
@@ -57,7 +55,6 @@ export class SellerOrdersComponent implements OnInit {
     this.route.navigate(['/product', product._id, 'items'])
   }
   placeOrderComponent(item) {
-    console.log("iiiiiiiiiiiiiiiiiii")
     const ref = this.dialogService.open(PlaceOrderagainComponent, {
       data: item,
       header: 'form',
